@@ -8,6 +8,7 @@ router.post('/login', (req, res) => {
     const {email, password} = req.body
 
     const authed = auth.isAuthenticUser(email, password)
+    
 
     if(!authed) {
         throw new Error('Incorrect email or password')
@@ -18,6 +19,11 @@ router.post('/login', (req, res) => {
     const token = {
         token: '007'
     }
+
+    res.set('Authorization', `Bearer ${token.token}`);
+
+
+
     res.status(200).json(token)
 })
 
