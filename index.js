@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-
 // config
 const PORT = 3000 // TODO: make env variable 
 

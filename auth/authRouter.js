@@ -1,19 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const auth = require('./util')
+const {logger, authenticate} = require('./authMiddleware')
+
 
 // http://localhost:3000/auth/login
-router.post('/login', (req, res) => {
+router.post('/login', logger, authenticate, (req, res) => {
 
-    const {email, password} = req.body
 
-    const authed = auth.isAuthenticUser(email, password)
-    
-
-    if(!authed) {
-        throw new Error('Incorrect email or password')
-        return;
-    }
 
     // TODO: generate token only if authentic user 
     const token = {

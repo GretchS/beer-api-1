@@ -1,17 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const {authorize} = require('../auth/authMiddleware')
 
 // http://localhost:3000/account
-router.get('/', (req, res) => {
+router.get('/', authorize, (req, res) => {
 
-    const authHeader = req.get('Authorization')
-    const [,token] = authHeader.split(' ') //['Bearer', '007']
 
-    if(token !== '007') {
-        res.status(401).json({
-            error: 'You are not authorized'
-        })
-    }
 
     // TODO: if user is not same as current user
 
